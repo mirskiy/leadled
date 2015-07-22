@@ -31,9 +31,9 @@ http://procrastinative.ninja/2014/07/20/install-python34-on-raspberry-pi/
 - pip3 install pyzmq (installs libzmq3 if not present)
 - pip install "ipython[notebook]"
  - python3-zmq and libzmq1 were left over from previous installs, shouldn't need them but may
-# dont think we need this- apt-get install ipython3 ipython3-notebook (for some reason this install libzmq1, prolly cuz dependencies are handled by apt-get and it doesn't know any better)
+ - ! dont think we need this- apt-get install ipython3 ipython3-notebook (for some reason this install libzmq1, prolly cuz dependencies are handled by apt-get and it doesn't know any better)
 - make sure ipython is using latest python version
-- copy Adafruit stuff (rename - to _, add __init__.py) to /usr/local/lib/python3.4/site-packages/
+- copy Adafruit stuff (rename - to \_, add __init__.py) to /usr/local/lib/python3.4/site-packages/
 https://pypi.python.org/pypi/smbus-cffi/0.4.1
 - sudo apt-get install build-essential libi2c-dev i2c-tools python-dev
 - sudo pip3 install cffi
