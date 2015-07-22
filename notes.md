@@ -1,3 +1,5 @@
+# sw
+
 have python 3.2 by default, upgrading isn't super easy
 needed py3.3 for something, don't remember what (for flask! even though we don't need it anymore...)
 
@@ -39,3 +41,10 @@ https://pypi.python.org/pypi/smbus-cffi/0.4.1
 - sudo pip3 install cffi
 - sudo pip3 install smbus-cffi
 
+# hw
+
+- switch i2c to 3v3 (white wire for existing?)
+ - doesnt matter if layout changes, we arent gonna get stencils before I leave anyways
+- order stencils
+- order correct headers from adafruit
+- solder stuff!
