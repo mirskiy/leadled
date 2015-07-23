@@ -1,0 +1,30 @@
+body {
+    background: url('http://beta.colorto.me/png/10/row2/bbb/eee/eee/bbb');
+    padding-top: 0px;
+}
+div {
+    margin: 40px 0;
+    padding: 10px;
+}
+p {
+    margin: 0 0 5px;
+}
+span {
+    background: rgba( 255,255,255,0.2 );
+    padding: 0 5px;
+}
+span.wrap_red {
+    background: rgba( 255,100,100,0.2 );
+}
+span.wrap_green {
+    background: rgba( 100,255,100,0.2 );
+}
+span.wrap_blue {
+    background: rgba( 100,100,255,0.2 );
+}
+.ch {
+    width: 200px;
+}
+input[type="number"] {
+    width: 45px;
+}
