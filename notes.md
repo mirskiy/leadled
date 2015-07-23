@@ -41,6 +41,8 @@ https://pypi.python.org/pypi/smbus-cffi/0.4.1
 - sudo pip3 install cffi
 - sudo pip3 install smbus-cffi
 
+- sudo pip3 install flask
+
 # hw
 
 - switch i2c to 3v3 (white wire for existing?)
