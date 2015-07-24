@@ -18,6 +18,8 @@ needed py3.3 for something, don't remember what (for flask! even though we don't
   - http://shopify.github.io/dashing/  <- most useful for future!
    - http://saltmines.us/blog/devlab/dashboard/
 
+- remove git key and anything else important before long - flask server is prolly mad insecure
+
 ## problems:
 
 
