@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask
 from flask import request
 from flask import render_template
@@ -50,6 +51,7 @@ def sliders():
 @app.route("/resetI2C")
 def resetI2C():
 	pwm = PWM(0x70)
+	return "reset"
 
 
 if __name__ == "__main__":

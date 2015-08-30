@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import socket
+import os
 from Adafruit_Raspberry_Pi_Python_Code.Adafruit_PWM_Servo_Driver.Adafruit_PWM_Servo_Driver import PWM
 
 # constants
@@ -87,7 +88,9 @@ def connectSocket():
 	# tcp setup, auth, print response
 	TCP_IP = 'cloud.blynk.cc'
 	TCP_PORT = 8442
-	with open('auth.temp', 'r') as f:
+	authPath = os.path.dirname( os.path.abspath( __file__ ) )
+	authPath = os.path.join(authPath, 'auth.temp')
+	with open(authPath, 'r') as f:
 		key = f.read()
 		key = bytes(key.strip(), 'ascii')
 
