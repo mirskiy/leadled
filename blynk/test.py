@@ -2,6 +2,7 @@
 
 import socket
 import os
+import time
 from Adafruit_Raspberry_Pi_Python_Code.Adafruit_PWM_Servo_Driver.Adafruit_PWM_Servo_Driver import PWM
 
 # constants
@@ -54,6 +55,7 @@ def setVirtualPort(singleCmd):
 
 	if port < 4:
 		pwm.setPWM(port, 0, val)
+		pwm.setPWM(port+4, 0, val)
 	elif port < 16:
 		pwm.setPWM(port, 0, 1000 if val else 0)
 	else:
@@ -107,17 +109,21 @@ if __name__ == "__main__":
 	pwm = PWM(0x70)
 	pwm.setPWM(4, 0, 100)
 
-	s = connectSocket()
 
 	loop=255
+	s = None
 	while(1):
 		loop += 1
+
+		if s is None:
+			s = connectSocket()
+
 		try:
 			data = s.recv(BUFFER_SIZE)
 
 			if( len(data)==0 ):		# this is a disconnect packet, we probably got kicked for being too quick. Let's restart connection
 				print("disconnected! reconnecting")
-				s = connectSocket()
+				s = None
 				continue
 
 			if( len(data)>0 ):  # if we got anything, print it
@@ -135,6 +141,9 @@ if __name__ == "__main__":
 		except socket.timeout:
 			print("timedout!")
 			s.send(bytes([0x06, (loop&0xff00)>>8, loop&0x00ff, 0x00, 0x00]))
+		except OSError:
+			time.sleep(5)
+			s = None
 		except KeyboardInterrupt:
 			print("clean exit")
 			s.close()
