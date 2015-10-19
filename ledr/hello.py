@@ -40,6 +40,7 @@ def setColor():
 	for ch, val in enumerate(channels):
 		if val is not None:
 			pwm.setPWM(ch, 0, int(val))
+			pwm.setPWM(ch+4, 0, int(val))
 		else:
 			channels[ch] = 'None'		# set it to none so we can print it out below
 	return "rgb %s" % (channels)
@@ -57,5 +58,5 @@ def resetI2C():
 if __name__ == "__main__":
 	pwm = PWM(0x70)
 	pwm.setPWM(4, 0, 100)
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0')
 
