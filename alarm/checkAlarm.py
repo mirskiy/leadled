@@ -39,14 +39,11 @@ if __name__ == '__main__':
             dt_after = dt + timedelta(0, 600, 0)        # TODO terrible naming
             time_after = dt_after.time()
 
-            if time_now_est < time:     # if we are before alarm time
-                continue                # skip
-
             if line in alarmed_list:    # if we have already alarmed
                 continue                # skip
 
             # !!TODO fix this. its a hack so we can set alarms for the next day
-            if time_now_est > time_after:      # if we are more than 10 mins after
+            if time_now_est < time or time_now_est > time_after:      # if we are before or more than 10 mins after alarm time
                 print("\tpending")
                 continue                       # skip 
 
@@ -58,4 +55,5 @@ if __name__ == '__main__':
 
             alarmed_list.append(line)       # TODO document and think. same alarm twice won't be triggered, but different vals will
             with open(ALARMED_FILENAME, 'a') as alarmed_f:
+                output_line= "%s\t# activated %s" % (line, dt_now_utc)		# TODO if we add a comment, the line comparison check fails above
                 print(line, file=alarmed_f)
