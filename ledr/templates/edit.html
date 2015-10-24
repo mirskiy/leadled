@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title>edit</title>
+	</head>
+
+	<body>
+		<form action="{{ url_for('edit', pk='<pk>') }}" method="post">
+			<input type="text" name="username" />
+			<input type="text" name="email" />
+			{{ form.csrf_token }}
+		</form>
+	</body>
+</html>
