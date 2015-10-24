@@ -18,6 +18,12 @@ if __name__ == '__main__':
     time_now_est = dt_now_utc.astimezone(est_tz).time()
 
     with open(ALARMED_FILENAME, 'r') as f:
+		# Read the first line
+		# Try
+		#	interpret as a date, otherwise delete the file and recreate
+		# check if the date is today
+		# 	otherwise delete the file and recreate.
+
         alarmed_list = []
         for line in f:
             alarmed_list.append(line.strip())
