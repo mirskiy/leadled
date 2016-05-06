@@ -45,6 +45,20 @@ def setColor():
 			channels[ch] = 'None'		# set it to none so we can print it out below
 	return "rgb %s" % (channels)
 
+@app.route("/setCh")
+def setCh():
+	channels = []
+
+	for ch in range(8):
+		val = request.args.get('ch' + str(ch))
+		if val is not None:
+			pwm.setPWM(ch, 0, int(val))
+			channels.append("ch {} = {}".format(ch, val))
+		else:
+			channels.append("ch {} = {}".format(ch, None))
+		
+	return " | ".join(channels)
+
 @app.route("/sliders")
 def sliders():
 	return render_template('sliders.html')

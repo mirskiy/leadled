@@ -1,0 +1,27 @@
+ .row .btn {
+	 margin-top: 10px;
+	 margin-bottom: 10px;
+ }
+
+ .content-block {
+	 margin-top: 10px;
+	 margin-bottom: 10px;
+	 background: #35F4EB;
+	 text-color: #0CD44C;
+	 border: 2px solid #1A8BEF;
+	 border-radius: 5px;
+ }
+
+ .content-header .h3 {
+	 padding-left: 10px;
+
+ }
+
+ .btn-primary {
+	 background-color: #0CD44C;
+ }
+
+ .content-block .list-group .btn-link {
+	 padding: 0;
+	 margin: 0;
+ }

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import '_forms.html' as forms %}
+
+{% block title %} form.name {% endblock %}
+{% block head %}
+	{{ super() }}
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"> -->
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block content %}
+{% block form %}
+	<section>
+		<h1>{{ action }} {{ data_type }}</h1>
+		<form action="{{ form_action }}" method="{{ method | d("POST") }}">
+			{{ forms.render_form(form) }}
+			<input type="submit" value="Submit!">
+		</form>
+	</section>
+	{% endblock form %}
+
+	<br>
+	<a href="delete" role="button" class="btn btn-primary">Delete</a>
+{% endblock %}

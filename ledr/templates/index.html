@@ -1,3 +1,90 @@
-hello, wwwWorld
-{{ url_for('index') }}
-{{ url_for('edit', pk='<pk>') }}
+{% extends "base.html" %}
+{% import '_forms.html' as forms %}
+
+{% block title %}Light Control{% endblock %}
+{% block extra_head %}
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"> -->
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block content %}
+	<br>
+
+	<div class="content-block container">
+		<div class="content-header input-group">
+			<span class="add-button input-group-btn"> <a href="#addLightModal" role="button" class="btn btn-xs btn-large btn-danger" data-toggle="modal">+</a> </span>
+			<span class="h3"> LightConfigs: </span>
+		</div>
+
+		<div class="list-group"> 
+			{% for config in lightConfigs %}
+			<div class="col-md-6"> 
+				<div class="row list-group-item">
+					<a href="{{ url_for('activateLightConfig', pk=config.pk) }}">
+						<div class="col-xs-3">{{config.name}}</div>
+						<div class="col-xs-7">(graphs)</div>
+					</a>
+					<div class="col-xs-2">
+						<form action="{{ url_for('deleteLightConfig', pk=config.pk) }}" method="POST"> <!-- need to use form to make a POST req. Link inside form so they are on the same line -->
+							<a href="{{ url_for('lightConfig', pk=config.pk) }}"><span class="glyphicon glyphicon-align-justify"></span></a>
+							<button class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button> 
+						</form>
+							<!-- <a href="{{ url_for('deleteLightConfig', pk=config.pk) }}"><span class="glyphicon glyphicon-remove"></span></a> -->
+					</div>
+				</div>
+			</div>
+			{% endfor %} 
+		</div>
+
+	</div>
+
+	<div class="content-block container">
+		<div class="content-header input-group">
+			<span class="add-button input-group-btn"> <a href="#addLightModal" role="button" class="btn btn-xs btn-large btn-danger" data-toggle="modal">+</a> </span>
+			<span class="h3"> Users: </span>
+		</div>
+
+		<ul class="list-group"> {% for user in users %}
+			<li class="list-group-item"><a href="{{ url_for('user', pk=user.id) }}">{{user.username}} - {{user.email}}</a> </li>
+		{%endfor%}</ul>
+	</div>
+
+	<div class="content-block container">
+		<!-- TODO add links dynamically as well! -->
+		<div class="content-header">
+			<span class="h3"> Links: </span>
+		</div>
+		<ul class="list-group">
+			<li class="list-group-item"><a href="resetI2C">Reset I2C</a></li>
+		</ul>
+	</div>
+
+	<!-- Modals -->
+	<div id="addLightModal" class="modal fade" tabindex="-1" role=dialog" aria-labelledby="addLightModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="addLightModalLbal">{{ action }} {{ data_type }}</h4>
+				</div>
+				<div class="modal-body">
+					{% block form %}
+						<section>
+							<form action="{{ form_action }}" method="{{ method | d("POST") }}">
+								{{ forms.render_form(form) }}
+								<input type="submit" value="Submit!">
+							</form>
+						</section>
+					{% endblock form %}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
